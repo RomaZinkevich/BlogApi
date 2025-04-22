@@ -1,5 +1,6 @@
 package com.zirom.blog.config;
 
+import com.zirom.blog.domain.entities.User;
 import com.zirom.blog.repositories.UserRepository;
 import com.zirom.blog.security.BlogUserDetailsService;
 import com.zirom.blog.security.JwtAuthenticationFilter;
@@ -27,7 +28,17 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService(UserRepository userRepository) {
-        return new BlogUserDetailsService(userRepository);
+        BlogUserDetailsService blogUserDetailsService = new BlogUserDetailsService(userRepository);
+        String email = "user@test.com";
+        userRepository.findByEmail(email).orElseGet(() -> {
+            User newUser = User.builder()
+                    .name("Test User")
+                    .email(email)
+                    .password(passwordEncoder().encode("password"))
+                    .build();
+            return userRepository.save(newUser);
+        });
+        return blogUserDetailsService;
     }
 
     @Bean
