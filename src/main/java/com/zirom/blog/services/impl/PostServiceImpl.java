@@ -39,6 +39,12 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public void deletePost(UUID id) {
+        Post post = getPost(id);
+        postRepository.delete(post);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public List<Post> getAllPosts(UUID categoryId, UUID tagId) {
         if(categoryId != null && tagId != null) {
