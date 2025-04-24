@@ -1,6 +1,5 @@
 package com.zirom.blog.domain.dtos;
 
-
 import com.zirom.blog.domain.PostStatus;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -18,14 +17,17 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CreatePostRequestDto {
+public class UpdatePostRequestDto {
+
+    @NotNull(message = "Post ID is required")
+    private UUID id;
 
     @NotBlank(message = "Title is required")
     @Size(min = 3, max = 200, message = "Title must be between {min} and {max} characters")
     private String title;
 
     @NotBlank(message = "Content is required")
-    @Size(min = 3, max = 50000, message = "Content must be between {min} and {max} characters")
+    @Size(min = 10, max = 50000, message = "Content must be between {min} and {max} characters")
     private String content;
 
     @NotNull(message = "Category ID is required")
@@ -37,6 +39,4 @@ public class CreatePostRequestDto {
 
     @NotNull(message = "Status is required")
     private PostStatus postStatus;
-
-
 }

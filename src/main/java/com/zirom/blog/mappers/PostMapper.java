@@ -1,8 +1,10 @@
 package com.zirom.blog.mappers;
 
 import com.zirom.blog.domain.CreatePostRequest;
+import com.zirom.blog.domain.UpdatePostRequest;
 import com.zirom.blog.domain.dtos.CreatePostRequestDto;
 import com.zirom.blog.domain.dtos.PostDto;
+import com.zirom.blog.domain.dtos.UpdatePostRequestDto;
 import com.zirom.blog.domain.entities.Post;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -19,4 +21,5 @@ public interface PostMapper {
 
     CreatePostRequest toCreatePostRequest(CreatePostRequestDto dto);
 
+    UpdatePostRequest toUpdatePostRequest(UpdatePostRequestDto dto);
 }
