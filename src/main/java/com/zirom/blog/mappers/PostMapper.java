@@ -20,6 +20,5 @@ public interface PostMapper {
 
     CreatePostRequest toCreatePostRequest(CreatePostRequestDto dto);
 
-    @Mapping(target = "status", source = "status")
     UpdatePostRequest toUpdatePostRequest(UpdatePostRequestDto dto);
 }
