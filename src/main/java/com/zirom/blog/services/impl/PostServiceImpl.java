@@ -102,7 +102,7 @@ public class PostServiceImpl implements PostService {
             existingPost.setCategory(newCategory);
         }
 
-        Set<UUID> existingTagIds = existingPost.getTags().stream().map(Tag::getId).collect(Collectors.toSet())
+        Set<UUID> existingTagIds = existingPost.getTags().stream().map(Tag::getId).collect(Collectors.toSet());
         Set<UUID> updatePostRequestTagIds = updatePostRequest.getTagIds();
         if (!existingTagIds.equals(updatePostRequestTagIds)) {
             List<Tag> newTags = tagService.getTagByIds(updatePostRequestTagIds);
